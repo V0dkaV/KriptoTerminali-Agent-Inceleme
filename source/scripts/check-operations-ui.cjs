@@ -1,0 +1,83 @@
+const {_electron:electron}=require('playwright');
+const path=require('node:path');
+const fs=require('node:fs');
+const assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..');
+const artifacts=path.join(root,'artifacts');
+fs.mkdirSync(artifacts,{recursive:true});
+const env={...process.env,KRIPTO_TEST_HIDDEN:'1',KRIPTO_DISABLE_LOCAL_AI:'1',KRIPTO_DATA_DIR:path.join(artifacts,'operations-ui-data-'+Date.now())};
+delete env.ELECTRON_RUN_AS_NODE;
+(async()=>{
+ const app=await electron.launch(process.argv[2]?{executablePath:process.argv[2],args:['--disable-gpu'],env,timeout:60000}:{args:[root,'--disable-gpu'],env,timeout:60000});
+ try{
+  const page=await app.firstWindow();
+  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.getByText('Portföyün bir bakışta.').waitFor({timeout:60000});
+  await page.locator('nav').getByRole('button',{name:'İşlem merkezi',exact:true}).click();
+  await page.getByTestId('operations-panel').waitFor({timeout:15000});
+  const plan=page.getByRole('button',{name:'Görev planını gör',exact:true});
+  await page.waitForFunction(async()=>{try{const r=await window.terminal.request('/operations');return r.mode==='PAPER'&&r.session_id;}catch{return false;}},{},{timeout:20000});
+  await plan.waitFor();await page.waitForTimeout(2200);
+  const initial=await page.evaluate(()=>window.terminal.request('/snapshot'));
+  const budget=page.getByRole('spinbutton',{name:'Görev bütçesi USDT',exact:true});
+  await budget.fill('0');assert(await plan.isDisabled());await budget.fill('100');
+  const lev=page.getByRole('spinbutton',{name:'Görev azami kaldıraç',exact:true});
+  await lev.fill(String(initial.settings.leverage+1));assert(await plan.isDisabled());await lev.fill(String(Math.min(3,initial.settings.leverage)));
+  await plan.click();
+  const approval=page.getByTestId('mission-approval');await approval.waitFor({timeout:15000});
+  const preview=await page.evaluate(()=>window.terminal.request('/snapshot'));
+  assert.equal(preview.mode,initial.mode);
+  assert.equal(preview.session.id,initial.session.id);
+  assert.equal(preview.metrics.initial,initial.metrics.initial,'Plan hesabı sıfırlamamalı');
+  assert.equal(preview.running,initial.running,'Önizleme motoru başlatmamalı');
+  assert.deepEqual(preview.positions.map(p=>p.id),initial.positions.map(p=>p.id));
+  await page.screenshot({path:path.join(artifacts,'operations-mission-preview.png')});
+  const actionId=await approval.getAttribute('data-action-id');assert(actionId);
+  await approval.getByRole('button',{name:'Bu görevi onayla',exact:true}).click();
+  await page.waitForFunction(async()=>{const r=await window.terminal.request('/operations');return r.mission?.status==='active';},{},{timeout:20000});
+  const active=await page.evaluate(()=>window.terminal.request('/operations'));
+  assert.equal(active.mission.capital,100);
+  assert(active.mission.leverage<=initial.settings.leverage);
+  assert(active.mission.max_positions<=initial.settings.max_positions);
+  assert(active.mission.available_capital<=100);
+  const replay=await page.evaluate(id=>window.terminal.request('/chat/action','POST',{id}),actionId);assert.equal(replay.ok,true);const repeated=await page.evaluate(()=>window.terminal.request('/operations'));assert.equal(repeated.mission.id,active.mission.id);
+  await page.getByRole('button',{name:'Görevin yeni girişlerini durdur',exact:true}).click();
+  await page.waitForFunction(async()=>{const r=await window.terminal.request('/operations');return r.mission?.status==='paused';},{},{timeout:15000});
+  const paused=await page.evaluate(()=>window.terminal.request('/operations'));
+  const checks=[];
+  for(const size of [[1440,960],[1280,800]]){
+   await app.evaluate(({BrowserWindow},size)=>BrowserWindow.getAllWindows()[0].setSize(...size),size);
+   for(const view of ['Sade','Pro']){
+    await page.getByRole('group',{name:'Arayüz görünümü'}).getByRole('button',{name:view,exact:true}).click();
+    assert(await page.locator('nav').getByRole('button',{name:'İşlem merkezi',exact:true}).isVisible());
+    assert.equal(await page.locator('.content').evaluate(el=>el.scrollWidth>el.clientWidth+2),false,`${view}/${size[0]} yatay taşma`);
+    assert.equal(await page.getByTestId('operations-panel').evaluate(el=>el.scrollWidth>el.clientWidth+2),false);
+    await page.getByText('Karar günlüğü',{exact:true}).scrollIntoViewIfNeeded();
+    assert(await page.getByText('Karar günlüğü',{exact:true}).isVisible());
+    await page.locator('.content').evaluate(el=>{el.scrollTop=0;});
+    await page.screenshot({path:path.join(artifacts,`operations-${view.toLowerCase()}-${size[0]}.png`)});
+    checks.push({size,view,overflow:false,formAndJournal:'accessible'});
+   }
+  }
+  await page.locator('nav').getByRole('button',{name:'AI sohbet',exact:true}).click();
+  await page.locator('nav').getByRole('button',{name:'İşlem merkezi',exact:true}).click();
+  await page.getByTestId('mission-status').getByText('Yeni girişler duraklatıldı',{exact:true}).waitFor({timeout:15000});
+  const after=await page.evaluate(()=>window.terminal.request('/snapshot'));
+  assert.equal(after.session.id,initial.session.id);
+  assert.equal(after.metrics.initial,initial.metrics.initial);
+  await page.locator('nav').getByRole('button',{name:'Ayarlar',exact:true}).click();
+  const policy=page.getByRole('combobox',{name:'Çıkış politikası',exact:true});
+  await policy.selectOption('fixed');
+  await page.getByRole('button',{name:'Ayarları kaydet',exact:true}).click();
+  await page.waitForFunction(async()=>(await window.terminal.request('/snapshot')).settings.exit_policy==='fixed');
+  await policy.selectOption('adaptive');
+  await page.getByRole('button',{name:'Ayarları kaydet',exact:true}).click();
+  await page.waitForFunction(async()=>(await window.terminal.request('/snapshot')).settings.exit_policy==='adaptive');
+  await page.locator('nav').getByRole('button',{name:'İşlem merkezi',exact:true}).click();
+  await page.evaluate(()=>window.terminal.request('/command','POST',{kind:'mode',payload:{mode:'DEMO'}}));
+  await page.waitForTimeout(2500);assert(await plan.isDisabled());
+  assert.deepEqual(errors,[]);
+  fs.writeFileSync(path.join(artifacts,'operations-ui-results.json'),JSON.stringify({version:after.version,checks,previewNoMutation:'passed',budgetAndRiskCaps:'passed',explicitApproval:'passed',pause:'passed',persistenceOnRemount:'passed',demoDisabled:'passed',exitPolicySettings:'passed',missionId:paused.mission.id,decisions:paused.decisions.length,liveTrading:false,errors},null,2));
+  console.log('PASS operations UI: real endpoints, explicit mission approval, preserved account, pause, views/sizes, accessible controls.');
+ }finally{try{await app.evaluate(({app})=>app.quit());}catch{}await app.close();}
+})().catch(e=>{console.error(e);process.exitCode=1;});

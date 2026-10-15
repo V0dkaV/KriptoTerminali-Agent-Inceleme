@@ -1,0 +1,10 @@
+{
+  "version": "0.8.0",
+  "standaloneDesktop": true,
+  "embeddedPython": true,
+  "restartPersistence": true,
+  "restartPaused": true,
+  "vaultEncrypted": true,
+  "researchWorker": true,
+  "liveLocked": true
+}

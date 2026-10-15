@@ -1,0 +1,32 @@
+import {useMemo,useState} from 'react';
+import {ArrowRight,ChevronLeft,ChevronRight,Globe2,RefreshCw,Search,TriangleAlert} from 'lucide-react';
+import type {Snapshot} from './types';
+import './universe.css';
+
+const count=(v:unknown)=>typeof v==='number'&&Number.isFinite(v)?Math.max(0,Math.floor(v)).toLocaleString('tr-TR'):'—';
+const length=(v:unknown)=>Array.isArray(v)?v.length:typeof v==='number'?v:undefined;
+const names:Record<string,string>={loading:'Liste yenileniyor',ready:'Liste güncel',partial:'Kısmi kaynak erişimi',error:'Kaynak bağlantısı bekleniyor',manual:'Manuel liste'};
+const aliases:Record<string,string>={BTCUSDT:'Bitcoin',ETHUSDT:'Ethereum',SOLUSDT:'Solana',DOGEUSDT:'Dogecoin',TRXUSDT:'Tron',AVAXUSDT:'Avalanche',BCHUSDT:'Bitcoin Cash',LTCUSDT:'Litecoin'};
+
+export function UniversePanel({data,compact=false,busy=false,onRefresh,onBrowse,onSelect,selected}:{data:Snapshot;compact?:boolean;busy?:boolean;onRefresh?:()=>void;onBrowse?:()=>void;onSelect?:(symbol:string)=>void;selected?:string}){
+ const universe=data.universe||{};
+ const [search,setSearch]=useState('');
+ const [page,setPage]=useState(0);
+ const symbols:string[]=data.mode==='DEMO'?(data.settings.allowlist||[]).filter((s:string)=>s==='BTCUSDT'||s==='ETHUSDT'):(data.settings.allowlist||[]);
+ const filtered=useMemo(()=>symbols.filter(s=>s.toUpperCase().includes(search.trim().toUpperCase())||(aliases[s]||'').toLocaleLowerCase('tr-TR').includes(search.trim().toLocaleLowerCase('tr-TR'))),[symbols,search]);
+ const pages=Math.max(1,Math.ceil(filtered.length/60));
+ const current=Math.min(page,pages-1);
+ const shown=filtered.slice(current*60,(current+1)*60);
+ const auto=universe.mode==='auto'||data.settings.auto_universe===true;
+ const demo=data.mode==='DEMO';
+ const status=universe.status||(auto?'loading':'manual');
+ const warning=status==='partial'||status==='error';
+ const updated=universe.updated_at?new Date(universe.updated_at*1000).toLocaleString('tr-TR',{timeZone:'Europe/Istanbul',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}):'Henüz yenilenmedi';
+ return <section className={'panel universe-panel '+(compact?'universe-compact':'')} data-testid="universe-panel" aria-label="Piyasa tarama kapsamı">
+  <div className="universe-heading"><span className="universe-icon"><Globe2 size={18}/></span><div><h3>{demo?'Örnek piyasa radarı':auto?'Geniş piyasa radarı':'Seçtiğin coin havuzu'}</h3><p>{demo?'Örnek Demo verisi':auto?'Borsaların USDT listeleri otomatik keşfedilir.':'Manuel listedeki USDT pariteleri izlenir.'}</p></div><span className={'badge '+(warning?'warning':status==='ready'?'positive':'blue')}>{demo?'Demo kapsamı':names[status]||'Kapsam bekleniyor'}</span>{onRefresh&&!demo&&<button className="text-button" disabled={busy||status==='loading'} onClick={onRefresh} aria-label="Piyasa listesini yenile"><RefreshCw size={13} className={status==='loading'?'spin':''}/>Listeyi yenile</button>}{onBrowse&&<button className="text-button" onClick={onBrowse}>Coinleri incele <ArrowRight size={13}/></button>}</div>
+  <div className={"universe-metrics "+(demo?"demo-metrics":"")} >{!demo&&<div><span>Keşfedilen coin</span><strong data-testid="universe-discovered">{count(universe.discovered)}</strong></div>}<div><span>Aktif izleme havuzu</span><strong data-testid="universe-symbols">{count(symbols.length)} <small>coin</small></strong></div>{!demo&&<div><span>Likidite filtresi</span><strong>{count(universe.eligible)} <small>coin</small></strong></div>}<div><span>Derin analiz kapsamı</span><strong data-testid="universe-analysis">{count(universe.analyzed)} <small>/ {count(universe.expected)}</small></strong></div>{!demo&&<><div><span>Anlık takip</span><strong>{count(length(universe.stream_symbols))} <small>coin</small></strong></div><div><span>Bu turdaki coinler</span><strong>{count(length(universe.scan_batch))} <small>/ {count(universe.scan_batch_size)}</small></strong></div></>}</div>
+  <p className="universe-explanation">{demo?'Demo, BTC ve ETH için örnek fiyat ve analiz akışını gösterir. Gerçek piyasa performansı veya otomatik coin keşfinin sonucu değildir.':'Geniş havuz fiyat ve likiditeyle taranır. Kapanmış mum analizi sırayla dönen gruplarda çalışır; anlık akış açık pozisyonlara ve seçili önceliklere ayrılır. Havuzdaki her coin aynı anda derin analizde değildir.'}</p>
+  {(warning||universe.error)&&<p className="universe-warning" role="status"><TriangleAlert size={14}/><span>{universe.error||'Bazı borsa listelerine erişilemiyor. Görünen kapsam, alınabilen verilerle sınırlı.'}</span></p>}
+  {!compact&&<><details className="universe-source-details"><summary>Kaynaklar ve filtreler · {updated}</summary><div className="universe-sources">{(universe.sources||[]).map((s:any)=><div key={s.venue+':'+s.market}><strong>{s.venue} · {s.market==='spot'?'Spot':'Vadeli'}</strong><span>{s.status==='ok'||s.status==='ready'?'Alındı':s.status==='error'?'Erişilemiyor':s.status||'Bekleniyor'} · {count(s.count)} piyasa</span>{s.error&&<small>{s.error}</small>}</div>)}</div><p>Girişte piyasa bazında hacim, alış/satış aralığı, güncel fiyat ve risk kontrolleri yeniden uygulanır. Listeye girmek işlem açılacağı anlamına gelmez.</p>{universe.note&&<p>{universe.note}</p>}</details>{onSelect&&<><div className="universe-search"><Search size={15}/><input aria-label="Coin havuzunda ara" placeholder={`${count(symbols.length)} coin içinde sembol ara…`} value={search} onChange={e=>{setSearch(e.target.value);setPage(0);}}/><span>{count(filtered.length)} sonuç</span></div><div className="universe-coins" data-testid="universe-coins">{shown.map(symbol=><button key={symbol} className={'universe-coin '+(symbol===selected?'selected':'')} onClick={()=>onSelect(symbol)} aria-pressed={symbol===selected}><strong>{symbol.slice(0,-4)}</strong><small>USDT</small></button>)}{!shown.length&&<p>Aramana uygun coin bulunamadı.</p>}</div><div className="universe-pagination"><span>{filtered.length?`${count(current*60+1)}–${count(Math.min((current+1)*60,filtered.length))}`:'0'} / {count(filtered.length)} coin</span><button className="icon-button" aria-label="Önceki coin sayfası" disabled={current===0} onClick={()=>setPage(current-1)}><ChevronLeft size={15}/></button><span>{count(current+1)} / {count(pages)}</span><button className="icon-button" aria-label="Sonraki coin sayfası" disabled={current>=pages-1} onClick={()=>setPage(current+1)}><ChevronRight size={15}/></button></div></>}</>}
+ </section>;
+}

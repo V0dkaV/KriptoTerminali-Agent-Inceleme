@@ -1,0 +1,12 @@
+node_modules/
+.venv/
+dist/
+out/
+engine-dist/
+build/
+artifacts/
+__pycache__/
+.pytest_cache/
+*.spec
+
+local-ai/

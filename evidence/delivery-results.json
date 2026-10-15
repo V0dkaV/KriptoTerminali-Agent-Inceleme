@@ -1,0 +1,8 @@
+{
+  "installer": "valid PE",
+  "archives": "CRC passed",
+  "source_files": 123,
+  "version": "0.8.0",
+  "bundled_engine": "matches verified final engine in portable and Squirrel release",
+  "hashes": "verified"
+}

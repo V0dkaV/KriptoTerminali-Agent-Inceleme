@@ -1,0 +1,617 @@
+{
+  "version": "0.8.0",
+  "time": "2026-10-15T20:57:05.821Z",
+  "packaged": true,
+  "source": "Actual public exchange catalogs, quotes and closed candles; isolated virtual account, local language model disabled",
+  "universe": {
+    "mode": "auto",
+    "status": "ready",
+    "discovered": 685,
+    "symbols": 685,
+    "eligible": 260,
+    "analyzed": 72,
+    "expected": 3610,
+    "scan_batch_size": 16,
+    "scan_batch": [
+      "BTCUSDT",
+      "ETHUSDT",
+      "SOLUSDT",
+      "ZECUSDT",
+      "AEROUSDT",
+      "AGTUSDT",
+      "AIGENSYNUSDT",
+      "AINUSDT",
+      "AKEUSDT",
+      "ALGOUSDT",
+      "ALLOUSDT",
+      "ALTUSDT",
+      "ANIMEUSDT",
+      "APEUSDT",
+      "APRUSDT",
+      "APTUSDT"
+    ],
+    "stream_symbols": 24,
+    "updated_at": 1792097748.4500515,
+    "error": "",
+    "sources": [
+      {
+        "venue": "Binance",
+        "market": "spot",
+        "status": "ready",
+        "count": 403,
+        "error": "",
+        "updated_at": 1792097748.4500515,
+        "checked_at": 1792097748.4500515
+      },
+      {
+        "venue": "Binance",
+        "market": "futures",
+        "status": "ready",
+        "count": 517,
+        "error": "",
+        "updated_at": 1792097748.4500515,
+        "checked_at": 1792097748.4500515
+      },
+      {
+        "venue": "Bybit",
+        "market": "spot",
+        "status": "ready",
+        "count": 369,
+        "error": "",
+        "updated_at": 1792097748.4500515,
+        "checked_at": 1792097748.4500515
+      },
+      {
+        "venue": "Bybit",
+        "market": "futures",
+        "status": "ready",
+        "count": 516,
+        "error": "",
+        "updated_at": 1792097748.4500515,
+        "checked_at": 1792097748.4500515
+      }
+    ],
+    "exclusions": {
+      "capacity": 0
+    },
+    "min_volume": 5000000,
+    "max_spread": 0.5,
+    "note": "Aktif USDT spot ve sürekli vadeli pariteler keşfedilir. Geniş fiyat taraması ayrıdır; likit coinlerin kapanmış mumları dönüşümlü incelenir. İlk hazırlık zaman alır; işlem ve kâr garantisi değildir."
+  },
+  "quotes": 1805,
+  "streams": 49,
+  "analysisCount": 72,
+  "analyzedSymbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT",
+    "ZECUSDT",
+    "0GUSDT",
+    "1000BONKUSDT",
+    "1000FLOKIUSDT",
+    "1000LUNCUSDT",
+    "1000PEPEUSDT",
+    "1000RATSUSDT",
+    "1000SHIBUSDT",
+    "4USDT",
+    "AAVEUSDT",
+    "ACEUSDT",
+    "ACUUSDT",
+    "ADAUSDT"
+  ],
+  "trainedContexts": 72,
+  "rotatingBatches": 2,
+  "sessionPreserved": true,
+  "balancePreserved": true,
+  "riskPreserved": true,
+  "initialBalance": 10000,
+  "positions": 0,
+  "closed": 0,
+  "paused": true,
+  "analyses": [
+    {
+      "symbol": "BTCUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "BTCUSDT",
+      "venue": "Bybit",
+      "market": "spot",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "BTCUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "BTCUSDT",
+      "venue": "Binance",
+      "market": "spot",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "BTCUSDT",
+      "venue": "Bybit",
+      "market": "spot",
+      "strategy": "swing",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "BTCUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "BTCUSDT",
+      "venue": "Binance",
+      "market": "spot",
+      "strategy": "swing",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "BTCUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "venue": "Bybit",
+      "market": "spot",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "venue": "Binance",
+      "market": "spot",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "venue": "Bybit",
+      "market": "spot",
+      "strategy": "swing",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "venue": "Binance",
+      "market": "spot",
+      "strategy": "swing",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "SOLUSDT",
+      "venue": "Binance",
+      "market": "spot",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "SOLUSDT",
+      "venue": "Bybit",
+      "market": "spot",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "SOLUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "SOLUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "SOLUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "SOLUSDT",
+      "venue": "Bybit",
+      "market": "spot",
+      "strategy": "swing",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "SOLUSDT",
+      "venue": "Binance",
+      "market": "spot",
+      "strategy": "swing",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "SOLUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ZECUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ZECUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ZECUSDT",
+      "venue": "Binance",
+      "market": "spot",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ZECUSDT",
+      "venue": "Binance",
+      "market": "spot",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "ZECUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "ZECUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "0GUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "0GUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "1000BONKUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "1000BONKUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "1000BONKUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "1000BONKUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "1000FLOKIUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "1000LUNCUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "1000FLOKIUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "1000LUNCUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "1000PEPEUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "1000PEPEUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "1000PEPEUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "1000PEPEUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "1000RATSUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "1000RATSUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "1000RATSUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "1000RATSUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "1000SHIBUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "1000SHIBUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "4USDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "4USDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "AAVEUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "AAVEUSDT",
+      "venue": "Binance",
+      "market": "spot",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "AAVEUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "AAVEUSDT",
+      "venue": "Bybit",
+      "market": "spot",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "AAVEUSDT",
+      "venue": "Binance",
+      "market": "spot",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "AAVEUSDT",
+      "venue": "Bybit",
+      "market": "spot",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "AAVEUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "AAVEUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "ACEUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ACUUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "ACEUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "ACUUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ADAUSDT",
+      "venue": "Binance",
+      "market": "spot",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ADAUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ADAUSDT",
+      "venue": "Bybit",
+      "market": "spot",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ADAUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "intraday",
+      "block_code": "waiting_rule"
+    },
+    {
+      "symbol": "ADAUSDT",
+      "venue": "Binance",
+      "market": "spot",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "ADAUSDT",
+      "venue": "Bybit",
+      "market": "spot",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "ADAUSDT",
+      "venue": "Bybit",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "volatile"
+    },
+    {
+      "symbol": "ADAUSDT",
+      "venue": "Binance",
+      "market": "futures",
+      "strategy": "swing",
+      "block_code": "volatile"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "version": "0.8.0",
+  "knowledgeCards": 14,
+  "history": "passed",
+  "conversation": "passed",
+  "operations": "passed",
+  "health": true,
+  "unauthorizedRejected": true,
+  "backtest": "done",
+  "ml": "passed",
+  "modelHash": "c567876093d3c4dcab3127f491557e1ad9eefd34462179e8503370a3766d8d63",
+  "standalonePython": true
+}

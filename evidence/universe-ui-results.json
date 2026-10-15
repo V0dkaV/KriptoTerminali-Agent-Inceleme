@@ -1,0 +1,122 @@
+{
+  "version": "0.8.0",
+  "packaged": true,
+  "publicCatalog": {
+    "discovered": 685,
+    "active": 685,
+    "sources": [
+      {
+        "venue": "Binance",
+        "market": "spot",
+        "status": "ready",
+        "count": 403,
+        "error": "",
+        "updated_at": 1792097854.6190395,
+        "checked_at": 1792097854.6190395
+      },
+      {
+        "venue": "Binance",
+        "market": "futures",
+        "status": "ready",
+        "count": 517,
+        "error": "",
+        "updated_at": 1792097854.6190395,
+        "checked_at": 1792097854.6190395
+      },
+      {
+        "venue": "Bybit",
+        "market": "spot",
+        "status": "ready",
+        "count": 369,
+        "error": "",
+        "updated_at": 1792097854.6190395,
+        "checked_at": 1792097854.6190395
+      },
+      {
+        "venue": "Bybit",
+        "market": "futures",
+        "status": "ready",
+        "count": 516,
+        "error": "",
+        "updated_at": 1792097854.6190395,
+        "checked_at": 1792097854.6190395
+      }
+    ],
+    "status": "ready"
+  },
+  "accountPreserved": true,
+  "manualAndAutoSettings": true,
+  "pausedMissionGate": true,
+  "checks": [
+    {
+      "view": "Sade",
+      "width": 1440,
+      "page": "Genel bakış"
+    },
+    {
+      "view": "Sade",
+      "width": 1440,
+      "page": "Piyasalar"
+    },
+    {
+      "view": "Sade",
+      "width": 1440,
+      "page": "Ayarlar"
+    },
+    {
+      "view": "Pro",
+      "width": 1440,
+      "page": "Genel bakış"
+    },
+    {
+      "view": "Pro",
+      "width": 1440,
+      "page": "Piyasalar"
+    },
+    {
+      "view": "Pro",
+      "width": 1440,
+      "page": "Ayarlar"
+    },
+    {
+      "view": "Sade",
+      "width": 1280,
+      "page": "Genel bakış"
+    },
+    {
+      "view": "Sade",
+      "width": 1280,
+      "page": "Piyasalar"
+    },
+    {
+      "view": "Sade",
+      "width": 1280,
+      "page": "Ayarlar"
+    },
+    {
+      "view": "Pro",
+      "width": 1280,
+      "page": "Genel bakış"
+    },
+    {
+      "view": "Pro",
+      "width": 1280,
+      "page": "Piyasalar"
+    },
+    {
+      "view": "Pro",
+      "width": 1280,
+      "page": "Ayarlar"
+    }
+  ],
+  "fixture": {
+    "label": "UI-only sample universe",
+    "symbols": 1205,
+    "renderedAtOnce": 60,
+    "analysisRowsAtOnce": 60,
+    "defaultAnalysisRows": 4,
+    "searchAndPagination": "passed",
+    "emptyAndSourceError": "passed"
+  },
+  "consoleErrors": []
+}

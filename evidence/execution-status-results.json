@@ -1,0 +1,301 @@
+{
+  "version": "0.8.0",
+  "time": "2026-10-15T20:58:14.659Z",
+  "source": "Actual public BTC/ETH quotes and closed-candle analysis, isolated paper account; no synthetic performance results",
+  "execution": {
+    "entry_gate": {
+      "code": "ready",
+      "blocked": false,
+      "label": "Sinyal bekleniyor",
+      "message": "Analiz sürüyor; uygun sinyal ve merkezi risk onayıyla yeni giriş yapılabilir."
+    },
+    "signal_intervals": [
+      "15m",
+      "4h"
+    ],
+    "heartbeat_age": 0.339932918548584,
+    "training": {
+      "queued": 0,
+      "running": true,
+      "current_key": "Binance:BTCUSDT:spot:intraday",
+      "completed": 0,
+      "discarded": 0,
+      "failed": 0,
+      "last_duration": 0,
+      "last_finished": 0,
+      "last_error": ""
+    },
+    "analysis": {
+      "completed": 1,
+      "expected": 16,
+      "latest_at": 1792097869.870391,
+      "oldest_at": 1792097869.870391
+    },
+    "reasons": [
+      {
+        "code": "preparing_model",
+        "label": "Geçmiş değerlendirmesi hazırlanıyor",
+        "count": 1
+      }
+    ],
+    "approved": 0,
+    "positions": 0,
+    "capital": 10000,
+    "last_dispatch_at": 1792097869.6530714,
+    "model_note": "Fiyat/pozisyon takibi, kapanmış mum sinyali ve arka plan eğitimi ayrı çalışır. Yerel dil modeli giriş emri üretmez."
+  },
+  "analysisDuringTraining": true,
+  "finalExecution": {
+    "entry_gate": {
+      "code": "paused",
+      "blocked": true,
+      "label": "Yeni girişler duraklatıldı",
+      "message": "Motoru başlatmak analizleri sürdürür; duraklatılmış görev ayrıca onay ister."
+    },
+    "signal_intervals": [
+      "15m",
+      "4h"
+    ],
+    "heartbeat_age": 0.8935627937316895,
+    "training": {
+      "queued": 0,
+      "running": false,
+      "current_key": null,
+      "completed": 16,
+      "discarded": 0,
+      "failed": 0,
+      "last_duration": 0.109,
+      "last_finished": 1792097879.9793196,
+      "last_error": ""
+    },
+    "analysis": {
+      "completed": 16,
+      "expected": 16,
+      "latest_at": 1792097879.9793196,
+      "oldest_at": 1792097872.222891
+    },
+    "reasons": [
+      {
+        "code": "waiting_rule",
+        "label": "Giriş koşulu oluşmadı",
+        "count": 16
+      }
+    ],
+    "approved": 0,
+    "positions": 0,
+    "capital": 10000,
+    "last_dispatch_at": 1792097891.653102,
+    "model_note": "Fiyat/pozisyon takibi, kapanmış mum sinyali ve arka plan eğitimi ayrı çalışır. Yerel dil modeli giriş emri üretmez."
+  },
+  "trainedContexts": 16,
+  "latestAnalyses": [
+    {
+      "venue": "Binance",
+      "symbol": "BTCUSDT",
+      "market": "spot",
+      "strategy": "intraday",
+      "candle_time": 1792096200,
+      "observed": 1792097872.222891,
+      "block_code": "waiting_rule",
+      "message": "Kapanmış mumda yöntemlerin giriş koşulu oluşmadı.",
+      "candidate_checks": []
+    },
+    {
+      "venue": "Bybit",
+      "symbol": "BTCUSDT",
+      "market": "futures",
+      "strategy": "intraday",
+      "candle_time": 1792096200,
+      "observed": 1792097872.4033425,
+      "block_code": "waiting_rule",
+      "message": "Kapanmış mumda yöntemlerin giriş koşulu oluşmadı.",
+      "candidate_checks": []
+    },
+    {
+      "venue": "Bybit",
+      "symbol": "BTCUSDT",
+      "market": "spot",
+      "strategy": "intraday",
+      "candle_time": 1792096200,
+      "observed": 1792097872.5382512,
+      "block_code": "waiting_rule",
+      "message": "Kapanmış mumda yöntemlerin giriş koşulu oluşmadı.",
+      "candidate_checks": []
+    },
+    {
+      "venue": "Binance",
+      "symbol": "BTCUSDT",
+      "market": "futures",
+      "strategy": "intraday",
+      "candle_time": 1792096200,
+      "observed": 1792097872.7243805,
+      "block_code": "waiting_rule",
+      "message": "Kapanmış mumda yöntemlerin giriş koşulu oluşmadı.",
+      "candidate_checks": []
+    },
+    {
+      "venue": "Bybit",
+      "symbol": "BTCUSDT",
+      "market": "spot",
+      "strategy": "swing",
+      "candle_time": 1792080000,
+      "observed": 1792097872.8129804,
+      "block_code": "waiting_rule",
+      "message": "Kapanmış mumda yöntemlerin giriş koşulu oluşmadı.",
+      "candidate_checks": []
+    },
+    {
+      "venue": "Binance",
+      "symbol": "BTCUSDT",
+      "market": "spot",
+      "strategy": "swing",
+      "candle_time": 1792080000,
+      "observed": 1792097873.213491,
+      "block_code": "waiting_rule",
+      "message": "Kapanmış mumda yöntemlerin giriş koşulu oluşmadı.",
+      "candidate_checks": []
+    },
+    {
+      "venue": "Bybit",
+      "symbol": "BTCUSDT",
+      "market": "futures",
+      "strategy": "swing",
+      "candle_time": 1792080000,
+      "observed": 1792097873.3254807,
+      "block_code": "waiting_rule",
+      "message": "Kapanmış mumda yöntemlerin giriş koşulu oluşmadı.",
+      "candidate_checks": []
+    },
+    {
+      "venue": "Binance",
+      "symbol": "BTCUSDT",
+      "market": "futures",
+      "strategy": "swing",
+      "candle_time": 1792080000,
+      "observed": 1792097873.6667018,
+      "block_code": "waiting_rule",
+      "message": "Kapanmış mumda yöntemlerin giriş koşulu oluşmadı.",
+      "candidate_checks": []
+    },
+    {
+      "venue": "Bybit",
+      "symbol": "ETHUSDT",
+      "market": "spot",
+      "strategy": "intraday",
+      "candle_time": 1792096200,
+      "observed": 1792097876.0685925,
+      "block_code": "waiting_rule",
+      "message": "Kapanmış mumda yöntemlerin giriş koşulu oluşmadı.",
+      "candidate_checks": []
+    },
+    {
+      "venue": "Bybit",
+      "symbol": "ETHUSDT",
+      "market": "futures",
+      "strategy": "intraday",
+      "candle_time": 1792096200,
+      "observed": 1792097876.4243836,
+      "block_code": "waiting_rule",
+      "message": "Kapanmış mumda yöntemlerin giriş koşulu oluşmadı.",
+      "candidate_checks": []
+    },
+    {
+      "venue": "Binance",
+      "symbol": "ETHUSDT",
+      "market": "spot",
+      "strategy": "intraday",
+      "candle_time": 1792096200,
+      "observed": 1792097876.5680425,
+      "block_code": "waiting_rule",
+      "message": "Kapanmış mumda yöntemlerin giriş koşulu oluşmadı.",
+      "candidate_checks": []
+    },
+    {
+      "venue": "Binance",
+      "symbol": "ETHUSDT",
+      "market": "futures",
+      "strategy": "intraday",
+      "candle_time": 1792096200,
+      "observed": 1792097876.7461784,
+      "block_code": "waiting_rule",
+      "message": "Kapanmış mumda yöntemlerin giriş koşulu oluşmadı.",
+      "candidate_checks": []
+    },
+    {
+      "venue": "Bybit",
+      "symbol": "ETHUSDT",
+      "market": "futures",
+      "strategy": "swing",
+      "candle_time": 1792080000,
+      "observed": 1792097879.2119434,
+      "block_code": "waiting_rule",
+      "message": "Kapanmış mumda yöntemlerin giriş koşulu oluşmadı.",
+      "candidate_checks": []
+    },
+    {
+      "venue": "Bybit",
+      "symbol": "ETHUSDT",
+      "market": "spot",
+      "strategy": "swing",
+      "candle_time": 1792080000,
+      "observed": 1792097879.2955534,
+      "block_code": "waiting_rule",
+      "message": "Kapanmış mumda yöntemlerin giriş koşulu oluşmadı.",
+      "candidate_checks": []
+    },
+    {
+      "venue": "Binance",
+      "symbol": "ETHUSDT",
+      "market": "futures",
+      "strategy": "swing",
+      "candle_time": 1792080000,
+      "observed": 1792097879.584851,
+      "block_code": "waiting_rule",
+      "message": "Kapanmış mumda yöntemlerin giriş koşulu oluşmadı.",
+      "candidate_checks": []
+    },
+    {
+      "venue": "Binance",
+      "symbol": "ETHUSDT",
+      "market": "spot",
+      "strategy": "swing",
+      "candle_time": 1792080000,
+      "observed": 1792097879.9793196,
+      "block_code": "waiting_rule",
+      "message": "Kapanmış mumda yöntemlerin giriş koşulu oluşmadı.",
+      "candidate_checks": []
+    }
+  ],
+  "paused": true,
+  "checks": [
+    {
+      "view": "Sade",
+      "width": 1440,
+      "height": 960,
+      "visible": true,
+      "overflow": false
+    },
+    {
+      "view": "Pro",
+      "width": 1440,
+      "height": 960,
+      "visible": true,
+      "overflow": false
+    },
+    {
+      "view": "Sade",
+      "width": 1280,
+      "height": 800,
+      "visible": true,
+      "overflow": false
+    },
+    {
+      "view": "Pro",
+      "width": 1280,
+      "height": 800,
+      "visible": true,
+      "overflow": false
+    }
+  ],
+  "errors": []
+}
